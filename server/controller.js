@@ -15,9 +15,9 @@ module.exports = {
         let hash = bcrypt.hashSync(password, salt);
 
         let newUser = await db.new_user([username, hash, profile_pic]);
-
+        let User = {username, hash, profile_pic};
         req.session.user = newUser[0];
 
-        res.status(200).send(req.session.user);
+        res.status(200).send(User);
     }
 }
